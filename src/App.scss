@@ -105,3 +105,15 @@ a {
   color: white;
   cursor: pointer;
 }
+
+a:nth-child(2):before {
+  content: ' Other Page';
+  position: absolute;
+
+}
+a:nth-child(2):hover:before {
+  content: 'Lets go!';
+transform: scale(1.05);
+font-weight: 800;
+text-shadow: 2px 2px 1px var(--color-3);
+}

@@ -69,7 +69,13 @@ function App() {
               <div className='App'>
                 <nav>
                   <Link to='/'>Home kindo</Link> |{' '}
-                  <Link to='otherpage'>Ohter page</Link>
+                  <Link
+                    to='otherpage'
+                    onMouseEnter={cursorMedium}
+                    onMouseLeave={cursorReset}
+                  >
+                    <>&nbsp;</>
+                  </Link>
                 </nav>
                 <div className='page_top'>
                   <h1
