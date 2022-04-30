@@ -1,24 +1,39 @@
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
-function App() {
+export const Cursor = () => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    addEventListeners();
+    return () => removeEventListeners();
+  }, []);
+
+  const addEventListeners = () => {
+    document.addEventListener('mousemove', onMouseMove);
+  };
+
+  const removeEventListeners = () => {
+    document.removeEventListener('mousemove', onMouseMove);
+  };
+
+  const onMouseMove = (e) => {
+    setPosition({ x: e.clientX, y: e.clientY });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div
+      className='cursor'
+      style={{
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+      }}
+    ></div>
   );
+};
+
+function App() {
+  return <div className='App'></div>;
 }
 
 export default App;
