@@ -46,20 +46,30 @@ const onMouseMove = (e) => {
   );
 };
 
-function App({ cursor }) {
+function App() {
+
+  const [cursorStyle, setCursorStyle] = useState("")
+
+  const cursorStyleChange = (cursorStyle) => {
+    setCursorStyle(cursorStyle)
+  };
+
   return (
     <>
       <Cursor
-        cursor={cursor}
+        /* cursor={cursor}
         onMouseMove={(e) => {
           const cursor = document.querySelector('.cursor');
           cursor.style.left = `${e.pageX}px`;
           cursor.style.top = `${e.pageY}px`;
-        }}
+        }} */
       />
       <div className='App'>
         <div className='page_top'>
-          <h1>[kɹiːˌe͡ɪtˈɪvɪti]</h1>
+          <h1 className='title'
+          onMouseEnter={() => cursorStyleChange('hovered')}
+          onMouseLeave={() => cursorStyleChange('')}
+          >[kɹiːˌe͡ɪtˈɪvɪti]</h1>
         </div>
 
         <div className='content_wrapper'>
