@@ -16,6 +16,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-x: hidden;
+  margin-bottom: 100px;
 }
 
 .content_wrapper {
@@ -41,14 +43,14 @@
 .title {
   display: block;
   width: fit-content;
-  font-size: 7rem;
+  font-size: 5rem;
   -webkit-text-stroke: 1px #fff;
   -webkit-text-fill-color: transparent;
   text-fill-color: transparent;
   color: transparent;
   opacity: 0.8;
   user-select: none;
-  transition: transform 0.6s linear;
+  transition: transform 0.2s linear;
 &:hover {
   -webkit-text-fill-color: var(--color-1);
   text-fill-color: var(--color-1);
@@ -75,3 +77,31 @@ h4 {
 }
 
 
+.App > nav {
+  position: absolute;
+  top: 20vh;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 60px;
+  background-color: lightslategray;
+  overflow-x: hidden;
+  
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+li {
+  padding: 0 1rem;
+  
+}
+a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}

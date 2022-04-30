@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import './App.scss';
+
+import OtherPage from './pages/OtherPage';
 
 import Cursor from './components/Cursor/Cursor';
 
@@ -24,8 +27,8 @@ function App() {
 
   const onMouseMove = (e) => {
     setPosition({
-      x: e.clientX - position.x / 2,
-      y: e.clientY - position.y / 2,
+      x: e.clientX,
+      y: e.clientY,
     });
   };
   const cursorLarge = () => setCursorVariant('cursorResizeL');
@@ -42,8 +45,6 @@ function App() {
       width: 200,
       x: position.x - 100,
       y: position.y - 100,
-      border: 3,
-      borderColor: '#000',
     },
     cursorResizeM: {
       height: 100,
@@ -60,35 +61,50 @@ function App() {
         variants={variants}
         position={position}
       />
-      <div className='App'>
-        <div className='page_top'>
-          <h1
-            className='title'
-            onMouseEnter={cursorLarge}
-            onMouseLeave={cursorReset}
-          >
-            [kɹiːˌe͡ɪtˈɪvɪti]
-          </h1>
-        </div>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <div className='App'>
+                <nav>
+                  <Link to='/'>Home kindo</Link> |{' '}
+                  <Link to='otherpage'>Ohter page</Link>
+                </nav>
+                <div className='page_top'>
+                  <h1
+                    className='title'
+                    onMouseEnter={cursorLarge}
+                    onMouseLeave={cursorReset}
+                  >
+                    [kɹiːˌe͡ɪtˈɪvɪti]
+                  </h1>
+                </div>
 
-        <div className='content_wrapper'>
-          <div className='left_side'>
-            <h2 onMouseEnter={cursorMedium} onMouseLeave={cursorReset}>
-              Custom cursor invert on hover
-            </h2>
-          </div>
-          <div className='right_side'>
-            <h4>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro
-              repudiandae voluptatum debitis, explicabo sit laboriosam molestias
-              vel rerum dicta doloribus incidunt obcaecati ex aliquid
-              necessitatibus nemo, iure iste! Esse, illo, rem a inventore nobis
-              consequuntur corrupti totam vel nesciunt saepe adipisci alias qui
-              velit laborum. Exercitationem amet quidem excepturi quas.
-            </h4>
-          </div>
-        </div>
-      </div>
+                <div className='content_wrapper'>
+                  <div className='left_side'>
+                    <h2 onMouseEnter={cursorMedium} onMouseLeave={cursorReset}>
+                      Custom cursor invert on hover
+                    </h2>
+                  </div>
+                  <div className='right_side'>
+                    <h4>
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                      Porro repudiandae voluptatum debitis, explicabo sit
+                      laboriosam molestias vel rerum dicta doloribus incidunt
+                      obcaecati ex aliquid necessitatibus nemo, iure iste! Esse,
+                      illo, rem a inventore nobis consequuntur corrupti totam
+                      vel nesciunt saepe adipisci alias qui velit laborum.
+                      Exercitationem amet quidem excepturi quas.
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            }
+          />
+          <Route path='/otherpage' element={<OtherPage />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
