@@ -1,30 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.scss';
 
 const Cursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-
+  /* const [position, setPosition] = useState({ x: 0, y: 0 }); */
+  /* 
   useEffect(() => {
     addEventListeners();
     return () => removeEventListeners();
+}, []);
+
+const addEventListeners = () => {
+    document.addEventListener("mousemove", onMouseMove);
+};
+
+const removeEventListeners = () => {
+    document.removeEventListener("mousemove", onMouseMove);
+};
+
+const onMouseMove = (e) => {
+    setPosition({x: e.clientX, y: e.clientY});
+};  */
+
+  // trying out with useRef instead
+  const cursorRef = useRef(null);
+
+  useEffect(() => {
+    document.addEventListener('mousemove', (e) => {
+      const { clientX, clientY } = e;
+      const mouseX = clientX - cursorRef.current.clientWidth / 2;
+      const mouseY = clientY - cursorRef.current.clientHeight / 2;
+      cursorRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const addEventListeners = () => {
-    document.addEventListener('mousemove', onMouseMove);
-  };
-
-  const removeEventListeners = () => {
-    document.removeEventListener('mousemove', onMouseMove);
-  };
-
-  const onMouseMove = (e) => {
-    setPosition({ x: e.clientX, y: e.clientY });
-  };
 
   return (
     <div
       className='cursor'
+      ref={cursorRef}
       /* style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
