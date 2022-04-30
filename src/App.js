@@ -33,10 +33,11 @@ function App() {
   };
   const cursorLarge = () => setCursorVariant('cursorResizeL');
   const cursorMedium = () => setCursorVariant('cursorResizeM');
-  const cursorReset = () => setCursorVariant('cursorDefault');
+  const cursorReset = () => setCursorVariant('cursorReset');
+  const cursorArticle = () => setCursorVariant('cursorArticle');
 
   const variants = {
-    cursorDefault: {
+    cursorReset: {
       x: position.x,
       y: position.y,
     },
@@ -51,6 +52,12 @@ function App() {
       width: 100,
       x: position.x - 50,
       y: position.y - 50,
+    },
+    cursorArticle: {
+      height: 50,
+      width: 50,
+      x: position.x - 25,
+      y: position.y - 25,
     },
   };
 
@@ -88,13 +95,15 @@ function App() {
                 </div>
 
                 <div className='content_wrapper'>
-                  <div className='left_side'>
-                    <h2 onMouseEnter={cursorMedium} onMouseLeave={cursorReset}>
-                      Custom cursor invert on hover
-                    </h2>
+                  <div
+                    className='left_side'
+                    onMouseEnter={cursorMedium}
+                    onMouseLeave={cursorReset}
+                  >
+                    <h2>Custom cursor invert on hover</h2>
                   </div>
                   <div className='right_side'>
-                    <h4>
+                    <h4 onMouseEnter={cursorArticle} onMouseLeave={cursorReset}>
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                       Porro repudiandae voluptatum debitis, explicabo sit
                       laboriosam molestias vel rerum dicta doloribus incidunt
