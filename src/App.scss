@@ -18,6 +18,7 @@
   transform: translate(-50%, -50%);
   z-index: 9999;
   mix-blend-mode: difference;
+  pointer-events: none;
 }
 
 .page_top {
@@ -34,16 +35,7 @@
   display: flex;
   justify-content: space-around;
   width: 100%;
-  padding: 4rem 2rem;
-
-  &:hover {
-    ~ .cursor {
-      transform: scale(1.8);
-      mix-blend-mode: difference;
-      background: var(--color-1);
-    } 
-  }
-  
+  padding: 4rem 2rem;  
 
   .left_side {
     width: 45%;
@@ -59,28 +51,24 @@
 
 }
 
-h1 {
+.title {
   display: block;
   width: fit-content;
-  font-size: 8rem;
+  font-size: 7rem;
   -webkit-text-stroke: 1px #fff;
   -webkit-text-fill-color: transparent;
   text-fill-color: transparent;
   color: transparent;
   opacity: 0.8;
   user-select: none;
-  transition: all 0.4s ease;
-
-  &:hover {
-    color: var(--color-1);
-    opacity: 1;
-    -webkit-text-stroke: 0;
-    -webkit-text-fill-color: var(--color-1);
-    text-fill-color: var(--color-1);
-
-   
-  }
+  transition: transform 0.6s linear;
+&:hover {
+  -webkit-text-fill-color: var(--color-1);
+  text-fill-color: var(--color-1);
+  transform: scale(1.2);
 }
+}
+
 
 
   
