@@ -1,80 +1,81 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.scss';
 
-const Cursor = () => {
-  /* const [position, setPosition] = useState({ x: 0, y: 0 }); */
-  /* 
+import Cursor from './components/Cursor/Cursor';
+
+function App() {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [cursorVariant, setCursorVariant] = useState('cursorDefault');
+
   useEffect(() => {
     addEventListeners();
     return () => removeEventListeners();
-}, []);
 
-const addEventListeners = () => {
-    document.addEventListener("mousemove", onMouseMove);
-};
-
-const removeEventListeners = () => {
-    document.removeEventListener("mousemove", onMouseMove);
-};
-
-const onMouseMove = (e) => {
-    setPosition({x: e.clientX, y: e.clientY});
-};  */
-
-  // trying out with useRef instead
-  const cursorRef = useRef(null);
-
-  useEffect(() => {
-    document.addEventListener('mousemove', (e) => {
-      const { clientX, clientY } = e;
-      const mouseX = clientX - cursorRef.current.clientWidth / 2;
-      const mouseY = clientY - cursorRef.current.clientHeight / 2;
-      cursorRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <div
-      className='cursor'
-      ref={cursorRef}
-      /* style={{
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-      }} */
-    ></div>
-  );
-};
+  const addEventListeners = () => {
+    document.addEventListener('mousemove', onMouseMove);
+  };
 
-function App() {
+  const removeEventListeners = () => {
+    document.removeEventListener('mousemove', onMouseMove);
+  };
 
-  const [cursorStyle, setCursorStyle] = useState("")
+  const onMouseMove = (e) => {
+    setPosition({
+      x: e.clientX - position.x / 2,
+      y: e.clientY - position.y / 2,
+    });
+  };
+  const cursorLarge = () => setCursorVariant('cursorResizeL');
+  const cursorMedium = () => setCursorVariant('cursorResizeM');
+  const cursorReset = () => setCursorVariant('cursorDefault');
 
-  const cursorStyleChange = (cursorStyle) => {
-    setCursorStyle(cursorStyle)
+  const variants = {
+    cursorDefault: {
+      x: position.x,
+      y: position.y,
+    },
+    cursorResizeL: {
+      height: 200,
+      width: 200,
+      x: position.x - 100,
+      y: position.y - 100,
+      border: 3,
+      borderColor: '#000',
+    },
+    cursorResizeM: {
+      height: 100,
+      width: 100,
+      x: position.x - 50,
+      y: position.y - 50,
+    },
   };
 
   return (
     <>
       <Cursor
-        /* cursor={cursor}
-        onMouseMove={(e) => {
-          const cursor = document.querySelector('.cursor');
-          cursor.style.left = `${e.pageX}px`;
-          cursor.style.top = `${e.pageY}px`;
-        }} */
+        cursorVariant={cursorVariant}
+        variants={variants}
+        position={position}
       />
       <div className='App'>
         <div className='page_top'>
-          <h1 className='title'
-          onMouseEnter={() => cursorStyleChange('hovered')}
-          onMouseLeave={() => cursorStyleChange('')}
-          >[kɹiːˌe͡ɪtˈɪvɪti]</h1>
+          <h1
+            className='title'
+            onMouseEnter={cursorLarge}
+            onMouseLeave={cursorReset}
+          >
+            [kɹiːˌe͡ɪtˈɪvɪti]
+          </h1>
         </div>
 
         <div className='content_wrapper'>
           <div className='left_side'>
-            <h2>Custom cursor invert on hover</h2>
+            <h2 onMouseEnter={cursorMedium} onMouseLeave={cursorReset}>
+              Custom cursor invert on hover
+            </h2>
           </div>
           <div className='right_side'>
             <h4>

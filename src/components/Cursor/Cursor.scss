@@ -1,0 +1,18 @@
+.cursor {
+    width: 100px;
+    height: 100px;
+    border: 4px;
+     border-color: aqua;
+      background-color: #fffffff9;
+      border-radius: 50%;
+      position: fixed;
+      width: 50px;
+      height: 50px;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      mix-blend-mode: difference;
+      pointer-events: none;
+      transform: translate(-50%, -50%);   
+  }
+  
