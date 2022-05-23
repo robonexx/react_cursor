@@ -63,19 +63,19 @@ function App() {
 
   return (
     <>
-      <Cursor
-        cursorVariant={cursorVariant}
-        variants={variants}
-        position={position}
-      />
       <BrowserRouter>
+        <Cursor
+          cursorVariant={cursorVariant}
+          variants={variants}
+          position={position}
+        />
         <Routes>
           <Route
             path='/'
             element={
               <div className='App'>
                 <nav>
-                  <Link to='/'>Home kindo</Link> |{' '}
+                  <Link to='/'>Home</Link> |{' '}
                   <Link
                     to='otherpage'
                     onMouseEnter={cursorMedium}

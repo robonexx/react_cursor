@@ -1,5 +1,41 @@
 import React from 'react';
 
+import './otherpage.scss'
+
+const list = [
+  {
+    title: 'E.T Phone Home'
+  },
+  {
+    title: 'HAsta LA VISTA'
+  },
+  {
+    title: 'Yippie Kai Yey MF'
+  },
+  {
+    title: 'Fear the Darkside'
+  },
+  {
+    title: 'The force is Strong'
+  },
+  {
+    title: 'My precious'
+  },
+]
+
 export default function OhterPage() {
-  return <div>The Other Page</div>;
+  return <div className='otherpage'>
+
+    <ul>
+      {list.map((l, i) => (
+        <div key={i}>
+          <li>
+            <a href="#" data-text={l.title}>{l.title}</a>
+          </li>
+        </div>
+      ))}
+      
+    </ul>
+    
+  </div>;
 }

@@ -9,7 +9,9 @@ const Cursor = ({ cursorVariant, variants }) => {
       className='cursor'
       variants={variants}
       animate={cursorVariant}
-    ></motion.div>
+    >
+      
+    </motion.div>
   );
 };
 
